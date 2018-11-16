@@ -36,13 +36,13 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        [self initData];
+        [self initUI];
     }
     return self;
 }
 
 ///UI
-- (void)initData {
+- (void)initUI {
     
     self.touchEnd = NO;
     
@@ -116,21 +116,8 @@
     if (_gestureBlock && _settingGesture) {
         //手势密码不得小于4个点
         if (self.selectedViews.count < 4) {
-            self.touchEnd = NO;
             
-            for (PointView *pointView in self.pointViews) {
-                pointView.isSelected = NO;
-            }
-            
-            [self.lineLayer removeFromSuperlayer];
-            
-            [self.selectedViews removeAllObjects];
-            
-            [self.selectedViewCenter removeAllObjects];
-            
-            self.startPoint = CGPointZero;
-            
-            self.endPoint = CGPointZero;
+            [self restoreDefaultState];
             
             if (_settingFailureBlock) {
                 _settingFailureBlock();
@@ -151,11 +138,9 @@
             pointView.isSuccess = YES;
         }
         
-        self.lineLayer.strokeColor = GestureUnlockSeccessColor.CGColor;
+        self.lineLayer.strokeColor = GestureUnlockSuccessColor.CGColor;
         if (_unlockBlock) {
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                self.unlockBlock(YES);
-            });
+            self.unlockBlock(YES);
         }
     } else {
         //解锁失败
@@ -166,10 +151,12 @@
         
         self.lineLayer.strokeColor = GestureUnlockErrorColor.CGColor;
         if (_unlockBlock) {
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                self.unlockBlock(NO);
-            });
+            self.unlockBlock(NO);
         }
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(NSEC_PER_SEC * 1.5)), dispatch_get_main_queue(), ^{
+            [self restoreDefaultState];
+        });
     }
 }
 
@@ -200,6 +187,27 @@
     [self.layer addSublayer:self.lineLayer];
     
     self.layer.masksToBounds = YES;
+}
+
+///还原为默认状态
+- (void)restoreDefaultState {
+    
+    self.touchEnd = NO;
+    
+    for (PointView *pointView in self.pointViews) {
+        pointView.isSelected = NO;
+        pointView.isError = NO;
+    }
+    
+    [self.lineLayer removeFromSuperlayer];
+    
+    [self.selectedViews removeAllObjects];
+    
+    [self.selectedViewCenter removeAllObjects];
+    
+    self.startPoint = CGPointZero;
+    
+    self.endPoint = CGPointZero;
 }
 
 #pragma mark - lazy

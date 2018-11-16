@@ -18,6 +18,7 @@
 		3613D2AA219E974600B6739F /* GestureView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3613D2A9219E974600B6739F /* GestureView.m */; };
 		3613D2AD219E975000B6739F /* PointView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3613D2AC219E975000B6739F /* PointView.m */; };
 		3613D2B3219EC17D00B6739F /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3613D2B2219EC17D00B6739F /* HomeViewController.m */; };
+		D821151C219F10E700A6BC62 /* GestureTool.m in Sources */ = {isa = PBXBuildFile; fileRef = D821151B219F10E700A6BC62 /* GestureTool.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +61,10 @@
 		3613D2AC219E975000B6739F /* PointView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PointView.m; sourceTree = "<group>"; };
 		3613D2B1219EC17D00B6739F /* HomeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
 		3613D2B2219EC17D00B6739F /* HomeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		D8211519219F10D300A6BC62 /* Gesture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Gesture.h; sourceTree = "<group>"; };
+		D821151A219F10E700A6BC62 /* GestureTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GestureTool.h; sourceTree = "<group>"; };
+		D821151B219F10E700A6BC62 /* GestureTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GestureTool.m; sourceTree = "<group>"; };
+		D821151D219F154E00A6BC62 /* GestureConst.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GestureConst.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +162,10 @@
 				3613D2A9219E974600B6739F /* GestureView.m */,
 				3613D2AB219E975000B6739F /* PointView.h */,
 				3613D2AC219E975000B6739F /* PointView.m */,
+				D821151A219F10E700A6BC62 /* GestureTool.h */,
+				D821151B219F10E700A6BC62 /* GestureTool.m */,
+				D8211519219F10D300A6BC62 /* Gesture.h */,
+				D821151D219F154E00A6BC62 /* GestureConst.h */,
 			);
 			path = Gestures;
 			sourceTree = "<group>";
@@ -311,6 +320,7 @@
 			files = (
 				3613D2A7219E973200B6739F /* GestureViewController.m in Sources */,
 				3613D2AA219E974600B6739F /* GestureView.m in Sources */,
+				D821151C219F10E700A6BC62 /* GestureTool.m in Sources */,
 				3613D27D219E957400B6739F /* main.m in Sources */,
 				3613D2A4219E971F00B6739F /* AppDelegate.m in Sources */,
 				3613D2B3219EC17D00B6739F /* HomeViewController.m in Sources */,

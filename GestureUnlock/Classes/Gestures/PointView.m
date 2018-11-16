@@ -53,7 +53,7 @@
     
     _isSuccess = isSuccess;
     if (_isSuccess) {
-        self.centerLayer.fillColor = GestureUnlockSeccessColor.CGColor;
+        self.centerLayer.fillColor = GestureUnlockSuccessColor.CGColor;
     } else {
         self.centerLayer.fillColor = GestureUnlockMainColor.CGColor;
     }

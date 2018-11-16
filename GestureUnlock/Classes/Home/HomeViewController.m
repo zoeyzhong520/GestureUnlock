@@ -7,9 +7,7 @@
 //
 
 #import "HomeViewController.h"
-
-//GestureUnlockKey
-static NSString * GestureUnlockKey = @"GestureUnlock";
+#import "Gesture.h"
 
 @interface HomeViewController ()
 
@@ -25,13 +23,24 @@ static NSString * GestureUnlockKey = @"GestureUnlock";
     
     self.title = @"Home";
     
-    NSLog(@"GestureUnlockKey===%@",[[NSUserDefaults standardUserDefaults] objectForKey:GestureUnlockKey]);
+    //重置手势密码
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"重置手势" style:UIBarButtonItemStylePlain target:self action:@selector(resetGesture)];
     
-    if (![[NSUserDefaults standardUserDefaults] objectForKey:GestureUnlockKey]) {
+    NSLog(@"GestureUnlockPassword===%@",[GestureTool gesturePassword]);
+    
+    if ([GestureTool gesturePassword].count == 0) {
         [self presentVCWithClassName:@"GestureViewController" withParamDic:@{@"settingGesture":@(YES)}];
     } else {
         [self presentVCWithClassName:@"GestureViewController" withParamDic:@{@"settingGesture":@(NO)}];
     }
+}
+
+//点击事件
+- (void)resetGesture {
+    
+    [GestureTool deleteGesturePassword];
+    
+    [self presentVCWithClassName:@"GestureViewController" withParamDic:@{@"settingGesture":@(YES)}];
 }
 
 - (void)presentVCWithClassName:(NSString *)className withParamDic:(NSDictionary *)paramDic {
@@ -55,15 +64,5 @@ static NSString * GestureUnlockKey = @"GestureUnlock";
     
     [self presentViewController:vc animated:YES completion:nil];
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
